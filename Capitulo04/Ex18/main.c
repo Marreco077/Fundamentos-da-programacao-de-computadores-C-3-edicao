@@ -8,7 +8,7 @@ int main(void) {
     printf("Digite a idade: ");
     scanf("%i", &idade);
 
-    if(idade>=18) {
+    if(idade >= 18) {
         printf("De maior");
     }
     else {
