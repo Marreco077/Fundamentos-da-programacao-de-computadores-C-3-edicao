@@ -6,7 +6,7 @@ iguais a 30, mostrando as posições em que apareceram*/
 int main(void) {
     int vetor [15];
 
-    printf("Digite 30 valores: \n");
+    printf("Digite 15 valores: \n");
     for(int i = 0; i < 15; i++) {
         scanf("%i", &vetor[i]);
     }
