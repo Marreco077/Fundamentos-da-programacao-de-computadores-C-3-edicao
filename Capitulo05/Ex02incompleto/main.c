@@ -5,3 +5,9 @@ escreva uma tabela de valores de lucros esperados em função do preço do ingre
 Escreva, ainda, para cada novo preço de ingresso, o lucro máximo esperado, 
 o preço do ingresso e a quantidade de ingressos vendidos para a obtenção desse lucro. */
 
+#include <stdio.h>
+
+int main(void) {
+    
+    return 0;
+}
