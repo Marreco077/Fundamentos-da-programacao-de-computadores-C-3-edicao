@@ -6,25 +6,78 @@ maior idade do grupo e a quantidade de mulheres com três filhos que recebem at�
 uma sub-rotina para cada cálculo)*/
 
 #include <stdio.h>
+#include <limits.h>
 
-float ler_dados() {
-    int idade[15];
-    char sexo[15];
-    float salario[15];
-    int filhos[15];
+#include <stdio.h>
+#include <limits.h>
 
-    for(int i = 0; i < 15; i++) {
-        printf("Digite a idade da pessoa %i: \n", i+1);
+void ler_dados(int idade[], char sexo[], float salario[], int filhos[]) {
+    for (int i = 0; i < 15; i++) {
+        printf("Digite a idade da pessoa %i: ", i+1);
         scanf("%i", &idade[i]);
-        printf("Digite o sexo da pessoa %i: [H/M]\n", i+1);
+        printf("Digite o sexo da pessoa %i [H/M]: ", i+1);
         scanf(" %c", &sexo[i]);
-        printf("Digite o salario da pessoa %i: \n", i+1);
+        printf("Digite o salario da pessoa %i: ", i+1);
         scanf("%f", &salario[i]);
-        printf("Digite a quantidade de filhos da pessoa %i: \n", i+1);
+        printf("Digite a quantidade de filhos da pessoa %i: ", i+1);
         scanf("%i", &filhos[i]);
     }
 }
-int main(void) {
+
+float media_salario(float salario[]) {
+    float media = 0;
     
+    for (int i = 0; i < 15; i++) {
+        media += salario[i];
+    }
+
+    media /= 15.0;
+    
+    return media;
+}
+
+void menor_maior_idade(int idade[], int *menor, int *maior) {
+    *menor = INT_MAX;
+    *maior = 0;
+
+    for (int i = 0; i < 15; i++) {
+        if (idade[i] < *menor) {
+            *menor = idade[i];
+        }
+        if (idade[i] > *maior) {
+            *maior = idade[i];
+        }
+    }
+}
+
+int contador_mulheres(int filhos[], float salario[], char sexo[]) {
+    int contador = 0;
+
+    for (int i = 0; i < 15; i++) {
+        if (sexo[i] == 'M' && filhos[i] == 3 && salario[i] <= 500.0) {
+            contador++;
+        }
+    }
+    
+    return contador;
+}
+
+int main(void) {
+    int idade[15], filhos[15], menor, maior;
+    char sexo[15];
+    float salario[15];
+
+    ler_dados(idade, sexo, salario, filhos);
+
+    float media = media_salario(salario);
+    menor_maior_idade(idade, &menor, &maior);
+    int mulheres = contador_mulheres(filhos, salario, sexo);
+
+    printf("\nMédia de salário entre os habitantes: %.2f\n", media);
+    printf("Menor idade do grupo: %i\n", menor);
+    printf("Maior idade do grupo: %i\n", maior);
+    printf("Quantidade de mulheres com três filhos que recebem até R$ 500,00: %d\n",contador_mulheres);
+
     return 0;
 }
+
